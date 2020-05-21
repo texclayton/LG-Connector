@@ -1,0 +1,135 @@
+<link rel="stylesheet" type="text/css" href="/js/jQuery-Plugin-To-Handle-CSS3-Powered-Spinners-Loaders-Loading-js/dist/loading.min.css" />
+<style>
+.trClass{
+  cursor:pointer
+}
+</style>
+<div class="col-md-12 col-sm-12 col-xs-12">
+  <div class="x_panel">
+    <div class="x_title">
+      <h2><%= __('HTML-Dashboard_Settings_Title') %></h2>
+      <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+      <form class="form-horizontal">
+        <div class="form-group form-group-md">
+          <label class="col-md-2 col-sm-4 col-xs-4 control-label">Mode</label>
+          <div class="col-md-10 col-sm-8 col-xs-8">
+            <button type="button" class="btn btn-info" disabled><%= mode %></button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+<br/>
+<br/>
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+  <div class="x_panel">
+    <div class="x_title">
+      <h2><%= __('HTML-Dashboard_LG_Devices_Title') %></h2>
+      <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"><%= __('HTML-Dashboard_LG_Devices_Address') %></th>
+            <th scope="col"><%= __('HTML-Dashboard_LG_Devices_Name') %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% list.forEach(function(device) { %>
+            <tr class="tableContextMenu trClass" data-row-id="<%= device.ip %>">
+              <td><%= device.ip %></td>
+              <td><%= device.type.toUpperCase() %></td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript" language="javascript" src="/js/BootstrapMenu.min.js"></script>
+<script type="text/javascript" language="javascript" src="/js/jQuery-Plugin-To-Handle-CSS3-Powered-Spinners-Loaders-Loading-js/dist/jquery.loading.min.js"></script>
+<script type="text/javascript">
+  var uniqueId = new Date().getTime();
+
+  $(document).ready(function(){
+
+  });
+
+  $(document).on("click", ".trClass", function(ev){
+    var target = $(this);
+    var id = target.attr("data-row-id");
+    location.href = "/devices/property?id=" + id;
+  });
+
+  var url = $(location).attr('host');
+  var ws = new WebSocket('ws://' + url);
+//  var ws = new WebSocket('ws://' + tmp[0] + ":" + (Number(tmp[1]) + 1));
+  // event emmited when connected
+  ws.onopen = function () {
+      console.log('Websocket is connected.');
+
+      var obj = new Object();
+      obj['cmd'] = "stDevices";
+      obj['uniqueId'] = uniqueId;
+      ws.send(JSON.stringify(obj));
+  }
+  // event emmited when receiving message
+  ws.onmessage = function (ev) {
+
+    var jsonObj = JSON.parse(ev.data);
+
+    var command = jsonObj.cmd;
+    var _uniqueId = jsonObj.uniqueId;
+    var dataObj = jsonObj.data;
+    if(_uniqueId != uniqueId && command != "notify"){
+      return;
+    }
+
+    switch(command){
+    case "resultSTDevices":
+      stDeviceList = dataObj;
+      updateTable();
+      break;
+    case "resultDeviceStatus":
+      updateParamTable(dataObj);
+      break;
+    case "notify":
+      updateDeviceData(dataObj);
+      break;
+    }
+  }
+
+  function updateTable(){
+    for(var i=0; i<stDeviceList.length; i++){
+      var id = stDeviceList[i];
+      var target = $("#" + id).parent();
+      target.find("td#" + id);
+      if(target.length > 0){
+        target.find("td").eq(0).find("span").removeClass("glyphicon-remove-circle");
+        target.find("td").eq(0).find("span").addClass("glyphicon-ok-circle");
+      }
+    }
+
+    hideLoading();
+  }
+
+  function showLoading(){
+  	$.showLoading({
+  	  name: 'jump-pulse'
+  	});
+  }
+
+  function hideLoading(){
+  	$.hideLoading();
+  }
+</script>

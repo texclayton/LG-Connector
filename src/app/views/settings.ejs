@@ -1,0 +1,334 @@
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+  <div class="x_panel">
+    <div class="x_title">
+      <h2> <%= __('HTML-Settings_System_Setup') %> </h2>
+      <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+      <form class="form-horizontal">
+        <div class="form-group form-group-md">
+          <label class="col-md-2 col-sm-3 col-xs-3 control-label"><%= __('HTML-Settings_System_App_Url') %></label>
+          <div class="col-md-10 col-sm-9 col-sm-9">
+            <select class="form-control" id="device-network">
+              <% networkList.forEach(function(address) { %>
+              <option value="<%= address %>"><%= address %></option>
+              <% }); %>
+            </select>
+          </div>
+        </div>
+        <div class="form-group form-group-md">
+          <label class="col-md-2 col-sm-3 col-xs-3 control-label">PORT</label>
+          <div class="col-md-10 col-sm-9 col-sm-9">
+            <input type="text" class="form-control" id="system-port" placeholder="PORT" value="<%= data.system.port %>">
+          </div>
+        </div>
+      </form>
+      <form class="text-right">
+        <button type="button" class="btn btn-info systemRegisterButton" data-loading-text="<i class='fa fa-spinner fa-spin '></i>"><%= __('HTML-Settings_System_Register_Button') %></button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+  <div class="x_panel">
+    <div class="x_title">
+      <h2> <%= __('HTML-Settings_ST_Title') %> </h2>
+      <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+      <form class="form-horizontal">
+        <div class="form-group form-group-md">
+          <label class="col-md-2 col-sm-3 col-xs-3 control-label"><%= __('HTML-Settings_ST_App_Url') %></label>
+          <div class="col-md-10 col-sm-9 col-sm-9">
+            <input type="text" class="form-control" id="st_app_url" placeholder="app_url" value="<%= data.st.app_url %>">
+          </div>
+        </div>
+        <div class="form-group form-group-md">
+          <label class="col-md-2 col-sm-3 col-xs-3 control-label"><%= __('HTML-Settings_ST_App_Id') %></label>
+          <div class="col-md-10 col-sm-9 col-sm-9">
+            <input type="text" class="form-control" id="st_app_id" placeholder="app_id" value="<%= data.st.app_id %>">
+          </div>
+        </div>
+        <div class="form-group form-group-md">
+          <label class="col-md-2 col-sm-3 col-xs-3 control-label"><%= __('HTML-Settings_ST_Access_Token') %></label>
+          <div class="col-md-10 col-sm-9 col-sm-9">
+            <input type="text" class="form-control" id="st_access_token" placeholder="acess_token" value="<%= data.st.access_token %>">
+          </div>
+        </div>
+      </form>
+      <form class="text-right">
+        <button type="button" class="btn btn-info stTestButton" disabled data-loading-text="<i class='fa fa-spinner fa-spin '></i>"><%= __('HTML-Settings_ST_Test_Button') %></button>
+        <button type="button" class="btn btn-info stRegisterButton" data-loading-text="<i class='fa fa-spinner fa-spin '></i>"><%= __('HTML-Settings_ST_Register_Button') %></button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+  <div class="x_panel">
+    <div class="x_title">
+      <h2> <%= __('HTML-Settings_Smartthinq_Title') %> </h2>
+      <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+      <form class="form-horizontal">
+        <div class="form-group form-group-md">
+          <label class="col-md-2 col-sm-3 col-xs-3 control-label"><%= __('HTML-Settings_Smartthinq_Refresh_Token') %></label>
+          <div class="col-md-10 col-sm-9 col-sm-9">
+            <input type="text" class="form-control" id="refresh_token" placeholder="Refresh Token" value="<%= data.smartthinq.refresh_token %>">
+          </div>
+        </div>
+      </form>
+      <form class="text-right">
+        <button type="button" class="btn btn-info smartthinqGetTokenButton" data-loading-text="<i class='fa fa-spinner fa-spin '></i>"><%= __('HTML-Settings_Smartthinq_Token_Button') %></button>
+      </form>
+      <br/>
+      <form class="form-horizontal">
+        <div class="form-group form-group-md">
+          <label class="col-md-2 col-sm-3 col-xs-3 control-label">Country</label>
+          <div class="col-md-10 col-sm-9 col-sm-9">
+            <select class="form-control" id="preset-country">
+              <option value="KR">KR</option>
+              <option value="US">US</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group form-group-md">
+          <label class="col-md-2 col-sm-3 col-xs-3 control-label">Language</label>
+          <div class="col-md-10 col-sm-9 col-sm-9">
+            <select class="form-control" id="preset-language">
+              <option value="ko-KR">ko-KR</option>
+              <option value="en-US">en-US</option>
+            </select>
+          </div>
+        </div>
+      </form>
+      <form class="text-right">
+        <button type="button" class="btn btn-info smartthinqPresetSaveButton" data-loading-text="<i class='fa fa-spinner fa-spin '></i>"><%= __('HTML-Settings_Smartthinq_Preset_Button') %></button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+  <div class="x_panel">
+    <div class="x_title">
+      <h2> <%= __('HTML-Settings_User_Title') %> </h2>
+      <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+      <form class="form-horizontal">
+        <div class="form-group form-group-md">
+          <label class="col-md-2 col-sm-3 col-xs-3 control-label"><%= __('HTML-Settings_User_Name') %></label>
+          <div class="col-md-10 col-sm-9 col-sm-9">
+            <input type="text" class="form-control" id="username" placeholder="User ID" value="<%= data.user.name %>">
+          </div>
+        </div>
+        <div class="form-group form-group-md">
+          <label class="col-md-2 col-sm-3 col-xs-3 control-label"><%= __('HTML-Settings_User_Password') %></label>
+          <div class="col-md-10 col-sm-9 col-sm-9">
+            <input type="text" class="form-control" id="password" placeholder="User Password" value="<%= data.user.password %>">
+          </div>
+        </div>
+      </form>
+      <form class="text-right">
+        <button type="button" class="btn btn-info userRegisterButton" data-loading-text="<i class='fa fa-spinner fa-spin '></i>"><%= __('HTML-Settings_User_Register_Button') %></button>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+<!-- Token Modal -->
+<div class="modal fade" id="tokenModal" tabindex="-1" role="dialog" aria-labelledby="lyrics" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Token</h5>
+      </div>
+      <div class="modal-body">
+        <lable><%= __('HTML-Settings_Smartthinq_Title_Token_Register_Label') %></label>
+        <input type="text" class="form-control" id="user-input-token-url" placeholder="URL">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="token-modal-button">OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script type="text/javascript">
+  var smartthinqData = null;
+
+  var uniqueId = new Date().getTime();
+  $('#device-network').val("<%= data.system.address %>");
+  $('#preset-country').val("<%= data.preset.country %>");
+  $('#preset-language').val("<%= data.preset.language %>");
+
+
+  $(".numbersOnly").on("keypress keyup blur",function (event) {
+    $(this).val($(this).val().replace(/[^\d].+/, ""));
+    if ((event.which < 48 || event.which > 57)) {
+      event.preventDefault();
+    }
+  });
+
+  $(document).on("click", ".smartthinqGetTokenButton", function(){
+    $("#user-input-token-url").val("");
+    setTimeout(function(){
+      $.get("/settings/getToken", function(data){
+        var jsonObj = JSON.parse(data);
+        console.log(jsonObj);
+        smartthinqData = jsonObj;
+        window.open(jsonObj.url);
+      });
+    }, 1500);
+    $('#tokenModal').modal('show');
+  });
+
+  $(document).on("click", ".smartthinqPresetSaveButton", function(){
+    try{
+      var data = {
+        "country": $("#preset-country").val(),
+        "language": $("#preset-language").val()
+      }
+
+      var $this = $(this);
+      $.post( "/settings/preset", data)
+      .done(function( data ) {
+        $this.button('reset');
+        var json = JSON.parse(data);
+        alert(json.msg);
+        alert("Restart Docker!!!!");
+        location.reload();
+      });
+      $this.button('loading');
+    }catch(err){
+      alert("<%= __('HTML-Settings_Smartthinq_Title_Token_Register_Fail') %>");
+    }
+  });
+
+  $(document).on("click", "#token-modal-button", function(){
+    try{
+      var url = new URL($("#user-input-token-url").val());
+      var refresh_token = url.searchParams.get("refresh_token");
+      var data = {
+        "refresh_token": refresh_token,
+        "api_root": smartthinqData.api_root,
+        "auth_base": smartthinqData.auth_base,
+        "oauth_root": smartthinqData.oauth_root
+      }
+
+      var $this = $(this);
+      $.post( "/settings/smartthinq", data)
+      .done(function( data ) {
+        $this.button('reset');
+        var json = JSON.parse(data);
+        alert(json.msg);
+        alert("Restart Docker!!!!");
+        location.reload();
+      });
+      $this.button('loading');
+    }catch(err){
+      alert("<%= __('HTML-Settings_Smartthinq_Title_Token_Register_Fail') %>");
+    }
+    $('#tokenModal').modal('hide');
+  });
+
+
+  $(document).on("click", ".systemRegisterButton", function(){
+    var network = $("#device-network").val();
+    var port = $("#system-port").val();
+
+    var $this = $(this);
+    $.post( "/settings/system", { 'network':network, 'port':port })
+    .done(function( data ) {
+      $this.button('reset');
+      var json = JSON.parse(data);
+      alert(json.msg);
+      location.reload();
+    });
+    $this.button('loading');
+  });
+
+
+  $(document).on("click", ".stTestButton", function(){
+    var app_url = $("#st_app_url").val();
+    var app_id = $("#st_app_id").val();
+    var access_token = $("#st_access_token").val();
+    var url = app_url + app_id + "/list?access_token=" + access_token;
+
+    var $this = $(this);
+    $this.button('loading');
+
+    try{
+      var obj = new Object();
+      obj['cmd'] = "testAPI";
+      obj['app_url'] = app_url;
+      obj['app_id'] = app_id;
+      obj['access_token'] = access_token;
+      obj['uniqueId'] = uniqueId;
+      ws.send(JSON.stringify(obj));
+    }catch(e){
+      alert("Error!");
+    }
+
+  });
+
+  $(document).on("click", ".stRegisterButton", function(){
+    var app_url = $("#st_app_url").val();
+    var app_id = $("#st_app_id").val();
+    var access_token = $("#st_access_token").val();
+
+
+    var $this = $(this);
+    $.post( "/settings/smartthings", { 'app_url': app_url, 'app_id': app_id, 'access_token': access_token })
+    .done(function( data ) {
+      $this.button('reset');
+      var json = JSON.parse(data);
+      alert(json.msg);
+      location.reload();
+
+    });
+    $this.button('loading');
+  });
+
+  $(document).on("click", ".userRegisterButton", function(){
+    var username = $("#username").val();
+    var password = $("#password").val();
+
+    var $this = $(this);
+    $.post( "/settings/user", { 'username': username, 'password': password })
+    .done(function( data ) {
+      $this.button('reset');
+      var json = JSON.parse(data);
+      alert(json.msg);
+      location.reload();
+
+    });
+    $this.button('loading');
+  });
+
+
+  $(document).ready(function(){
+
+  });
+
+
+</script>

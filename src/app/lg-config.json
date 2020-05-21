@@ -1,0 +1,31 @@
+{
+  "system": {
+    "mode": "Auto",
+    "address": "",
+    "port": "30020"
+  },
+  "user": {
+    "name": "admin",
+    "password": "12345"
+  },
+  "st": {
+    "app_url": "",
+    "app_id": "",
+    "access_token": ""
+  },
+  "smartthinq": {
+    "refresh_token":"",
+    "auth_base": "",
+    "api_root": "",
+    "oauth_root": ""
+  },
+  "token": "",
+  "devices": {
+     "list":[]
+   },
+  "preset": {
+    "country": "KR",
+    "language": "ko-KR"
+  },
+   "pollingTime": 1
+}

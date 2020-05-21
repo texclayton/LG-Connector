@@ -1,0 +1,60 @@
+<link rel="stylesheet" type="text/css" href="/js/jQuery-Plugin-For-Easily-Readable-JSON-Data-Viewer/json-viewer/jquery.json-viewer.css" />
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+  <div class="x_panel">
+    <div class="x_title">
+      <h2><%= __('HTML-Dashboard_Settings_Title') %></h2>
+      <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#property">Property</a></li>
+        <li><a data-toggle="tab" href="#langPack">Language Pack</a></li>
+      </ul>
+
+      <div class="tab-content">
+        <div id="property" class="tab-pane fade in active">
+          <pre id="json-renderer-property"></pre>
+        </div>
+        <div id="langPack" class="tab-pane fade">
+          <pre id="json-renderer-langPack"></pre>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript" language="javascript" src="/js/BootstrapMenu.min.js"></script>
+<script type="text/javascript" language="javascript" src="/js/jQuery-Plugin-For-Easily-Readable-JSON-Data-Viewer/json-viewer/jquery.json-viewer.js"></script>
+<script type="text/javascript">
+  var id = "<%= id %>"
+
+  $(document).ready(function(){
+    $.get("/devices/property/" + id, function(data){
+
+      var options = {
+        collapsed: $('#collapsed').is(':checked'),
+        rootCollapsable: $('#root-collapsable').is(':checked'),
+        withQuotes: $('#with-quotes').is(':checked'),
+        withLinks: $('#with-links').is(':checked')
+      };
+      $('#json-renderer-property').jsonViewer(data, options);
+
+    })
+
+    $.get("/devices/langProperty/" + id, function(data){
+
+      var options = {
+        collapsed: $('#collapsed').is(':checked'),
+        rootCollapsable: $('#root-collapsable').is(':checked'),
+        withQuotes: $('#with-quotes').is(':checked'),
+        withLinks: $('#with-links').is(':checked')
+      };
+      $('#json-renderer-langPack').jsonViewer(data, options);
+
+    })
+  });
+
+</script>

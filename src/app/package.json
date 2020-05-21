@@ -1,0 +1,42 @@
+{
+  "name": "lg-connector",
+  "version": "0.0.3",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "base-64": "^0.1.0",
+    "body-parser": "^1.18.3",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-beta.3",
+    "crypto": "^1.0.1",
+    "crypto-js": "^3.1.9-1",
+    "dateformat": "^3.0.3",
+    "debug": "^2.6.9",
+    "ejs": "^2.5.9",
+    "express": "^4.15.5",
+    "express-ejs-layouts": "^2.5.0",
+    "i18n": "^0.8.3",
+    "ip": "^1.1.5",
+    "json5": "^2.1.0",
+    "jsonfile": "^5.0.0",
+    "lgtv2": "^1.4.1",
+    "moment": "^2.22.2",
+    "morgan": "~1.9.0",
+    "node-cmd": "^3.0.0",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
+    "replaceall": "^0.1.6",
+    "request": "^2.88.0",
+    "serve-favicon": "^2.4.5",
+    "url": "^0.11.0",
+    "url-join": "^4.0.0",
+    "uuid": "^3.3.2",
+    "websocket": "^1.0.28",
+    "winston": "^3.1.0",
+    "wol": "^1.0.5",
+    "xml-parser": "^1.2.1"
+  }
+}

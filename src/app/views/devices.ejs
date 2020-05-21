@@ -1,0 +1,142 @@
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+  <div class="x_panel">
+    <div class="x_title">
+      <h2><%= __('HTML-Dashboard_LG_Devices_Title') %></h2>
+      <div class="clearfix"></div>
+    </div>
+    <div class="x_content">
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col"><%= __('HTML-Dashboard_LG_Devices_Address') %></th>
+            <th scope="col"><%= __('HTML-Dashboard_LG_Devices_Name') %></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% list.forEach(function(device) { %>
+            <tr class="tableContextMenu" data-row-id="<%= device.ip %>">
+              <td><input type="radio" name="devices"></td>
+              <td><%= device.ip %></td>
+              <td><%= device.name %></td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<div class="col-md-12 col-sm-12 col-xs-12 text-right">
+  <button type="button" class="btn btn-info" id="deleteButton"><%= __('HTML-Devices_LG_Delete_Button') %></button>
+  <button type="button" class="btn btn-info registerButton" data-toggle="modal" data-target="#modal"><%= __('HTML-Devices_LG_Register_Button') %></button>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="modal" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Add device</h4>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label for="usr">IP Address:</label>
+          <input type="text" class="form-control" id="address">
+        </div>
+        <div class="form-group">
+          <label for="pwd">Token:</label>
+          <select class="form-control" id="device-type">
+            <option value="tv">TV</option>
+          </select>
+        </div>
+        <div class="form-group" id="mac-input-area">
+          <label for="mac">Mac:</label>
+          <input type="text" class="form-control" id="mac-input">
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" id="registerDataButton">OK</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<script type="text/javascript" src="/js/jQuery-Plugin-To-Handle-CSS3-Powered-Spinners-Loaders-Loading-js/dist/jquery.loading.min.js"></script>
+<script type="text/javascript">
+
+  $(document).on("click", "#registerDataButton", function(){
+    var ip = $("#address").val();
+    var deviceType = $("#device-type").val();
+    var data = {"ip":ip, "type":deviceType};
+    if(deviceType == "tv"){
+      var mac = $("#mac-input").val();
+      data["mac"] = mac;
+      if(mac == ""){
+        alert("<%= __('HTML-Devices_LG_Devices_Empty') %>");
+        return;
+      }
+    }
+    if(ip == ""){
+      alert("<%= __('HTML-Devices_LG_Devices_Empty') %>");
+      return;
+    }
+//    showLoading();
+    var $this = $(this);
+
+    $.ajax({
+      url: "/devices/add",
+      type: 'POST',
+      data: data,
+      success: function(result){
+        $this.button('reset');
+        alert(result);
+        location.reload();
+      },
+      error: function(result){
+        console.log(result);
+        $this.button('reset');
+        alert("<%= __('RESULT-Devices_LG_Devices_Add_Fail') %>");
+      }
+    });
+
+  });
+
+  $(document).on("click", "#deleteButton", function(evt){
+    var target = $( "input[name=devices]:checked" ).eq(0);
+    var address = target.parent().parent().attr("data-row-id");
+    var $this = $(this);
+    $.ajax({
+      url: "/devices/delete",
+      type: 'DELETE',
+      data: {"ip":address},
+      success: function(result){
+        $this.button('reset');
+        alert(result);
+        location.reload();
+      },
+      error: function(result){
+        $this.button('reset');
+        alert("<%= __('RESULT-Devices_LG_Devices_Delete_Fail') %>");
+      }
+    });
+  });
+
+  function showLoading(){
+  	$.showLoading({
+  	  name: 'jump-pulse'
+  	});
+  }
+
+  function hideLoading(){
+  	$.hideLoading();
+  }
+
+</script>
