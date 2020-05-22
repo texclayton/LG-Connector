@@ -1,4 +1,4 @@
-FROM resin/rpi-raspbian:latest
+FROM arm32v6/alpine
 
 # Create app directory
 WORKDIR /usr/src/app
@@ -8,16 +8,17 @@ WORKDIR /usr/src/app
 # where available (npm@5+)
 COPY package*.json ./
 
-RUN apt-get update -y
-RUN apt-get upgrade -y
+RUN apk update
+RUN apk upgrade
 
 ENV LANG en_US.utf8
 
-RUN apt-get install -y -y build-essential apt-utils iputils-ping
-RUN apt-get install -y libcairo2-dev libgif-dev libjpeg-dev libgif7
+RUN apk add build-base iputils
+RUN apk add cairo-dev giflib-dev jpeg-dev
+RUN apk add sudo curl bash
 
-RUN curl -sL https://deb.nodesource.com/setup_9.x | sudo bash -
-RUN apt-get install nodejs -y
+#RUN curl -sL https://deb.nodesource.com/setup_9.x | sudo bash -
+RUN apk add nodejs nodejs-npm
 
 RUN cd /usr/src/app
 
