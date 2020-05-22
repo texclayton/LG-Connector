@@ -77,7 +77,7 @@ class LGDeviceManager {
   * TV Init
   */
   _initTVList(){
-    logger.info("Iitialize TV Devices....");
+    logger.info("Initialize TV Devices....");
     var list = configUtil.getConfig().devices.list;
     for(var i=0; i<list.length; i++){
       var item = list[0];
