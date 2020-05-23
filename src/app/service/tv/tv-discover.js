@@ -53,7 +53,7 @@ class TVDiscover extends events.EventEmitter {
 		ssdp_msg += "ST: urn:lge-com:service:webos-second-screen:1\r\n";
 		ssdp_msg += "USER-AGENT: iOS/5.0 UDAP/2.0 iPhone/4\r\n\r\n";
 
-    let message = new Buffer(ssdp_msg);
+    let message = Buffer.alloc(ssdp_msg.length, ssdp_msg);
 
     this._server.send(message, 0, message.length, ssdp_rport, ssdp_rhost);
 
