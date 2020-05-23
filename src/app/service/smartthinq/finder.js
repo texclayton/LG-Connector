@@ -158,7 +158,7 @@ class Finder extends Base{
   }
 
   async reInit(){
-    logger.info("Refresh a sesion....");
+    logger.info("Refresh a session....");
 //    this._locked = true;
     this.session_id = null;
     await this.refreshSession();
@@ -174,7 +174,7 @@ class Finder extends Base{
   }
 
   async refreshAuth(){
-    logger.info("Refresh a auth....");
+    logger.info("Refresh auth....");
     var data = await this.refresh_auth();
     var keyList = Object.keys(this.list);
     for (var i=0; i<keyList.length; i++) {
