@@ -32,5 +32,5 @@ COPY lg-config.json /config
 
 RUN npm install
 
-CMD npm start
+CMD NODE_ARGS=--tls-min-v1.0 npm start
 
