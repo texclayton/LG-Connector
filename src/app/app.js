@@ -128,6 +128,16 @@ app.use(function(err, req, res, next) {
 });
 
 
+/**
+ * Handle unexpected errors in promises
+ */
+process.on('unhandledRejection', function(reason, promise) {
+  var realErr = reason;
+  if (realErr.err) {
+    logger.error("unhandled Rejection: " + reason.err + "\nStack trace: "+ reason.err.stack);
+  } else {
+    logger.error("unhandled Rejection: " + JSON.stringify(reason)); }
+});
 
 
 
