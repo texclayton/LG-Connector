@@ -1,7 +1,8 @@
-const request 			   = require("request");
-const EventEmitter 	  = require('events');
-const xmlParse 			  = require('xml-parser');
+const request         = require("request");
+const EventEmitter    = require('events');
+const xmlParse        = require('xml-parser');
 const configUtil      = require('../../util/config');
+const logger          = require('../../util/log').log;
 
 class Base extends EventEmitter{
 
